@@ -1,4 +1,4 @@
-name             'nagios'
+name             'mu-nagios'
 maintainer       'Sous Chefs'
 maintainer_email 'help@sous-chefs.org'
 license          'Apache-2.0'
