@@ -27,13 +27,13 @@
 case node['nagios']['server']['web_server']
 when 'nginx'
   Chef::Log.info 'Setting up Nagios server via NGINX'
-  include_recipe 'nagios::nginx'
+  include_recipe 'mu-nagios::nginx'
 when 'apache'
   Chef::Log.info 'Setting up Nagios server via Apache2'
-  include_recipe 'nagios::apache'
+  include_recipe 'mu-nagios::apache'
 when 'none'
   Chef::Log.info 'Setting up Nagios server without web server'
-  include_recipe 'nagios::server'
+  include_recipe 'mu-nagios::server'
 else
   Chef::Log.fatal('Unknown web server option provided for Nagios server: ' \
                   "#{node['nagios']['server']['web_server']} provided. Allowed:" \

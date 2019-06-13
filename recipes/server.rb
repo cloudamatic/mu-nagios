@@ -33,7 +33,7 @@ nagios_service_name = if platform_family?('debian') &&
                       end
 
 # install nagios service either from source of package
-include_recipe "nagios::server_#{node['nagios']['server']['install_method']}"
+ "nagios::server_#{node['nagios']['server']['install_method']}"
 
 # use the users_helper.rb library to build arrays of users and contacts
 nagios_users = NagiosUsers.new(node)
