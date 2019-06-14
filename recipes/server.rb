@@ -33,7 +33,7 @@ nagios_service_name = if platform_family?('debian') &&
                       end
 
 # install nagios service either from source of package
-include_recipe "nagios::server_#{node['nagios']['server']['install_method']}"
+ "nagios::server_#{node['nagios']['server']['install_method']}"
 
 # use the users_helper.rb library to build arrays of users and contacts
 nagios_users = NagiosUsers.new(node)
@@ -72,12 +72,12 @@ Nagios.instance.host_name_attribute = node['nagios']['host_name_attribute']
 
 # loading default configuration data
 if node['nagios']['server']['load_default_config']
-  include_recipe 'nagios::_load_default_config'
+  include_recipe 'mu-nagios::_load_default_config'
 end
 
 # loading all databag configurations
 if node['nagios']['server']['load_databag_config']
-  include_recipe 'nagios::_load_databag_config'
+  include_recipe 'mu-nagios::_load_databag_config'
 end
 
 directory "#{node['nagios']['conf_dir']}/dist" do

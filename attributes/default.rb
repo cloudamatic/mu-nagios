@@ -217,7 +217,7 @@ default['nagios']['server']['nginx_dispatch']['php_url']  =
   'unix:/var/run/php-fpm-www.sock'
 default['nagios']['php_gd_package']                    =
   case node['platform_family']
-  when 'rhel'
+  when 'rhel', 'amazon'
     'php-gd'
   else
     'php5-gd'

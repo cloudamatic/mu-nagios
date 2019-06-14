@@ -25,7 +25,7 @@ describe 'nagios::default' do
   end
 
   it 'should include the server_source recipe' do
-    expect(chef_run).to include_recipe('nagios::server_source')
+    expect(chef_run).to include_recipe('mu-nagios::server_source')
   end
 
   it 'should include the php::default recipe' do

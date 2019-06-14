@@ -25,7 +25,7 @@ describe 'nagios::default' do
   end
 
   it 'should include the server_package recipe' do
-    expect(chef_run).to include_recipe('nagios::server_package')
+    expect(chef_run).to include_recipe('mu-nagios::server_package')
   end
 
   it 'should install correction packages' do

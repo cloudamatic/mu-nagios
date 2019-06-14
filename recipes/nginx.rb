@@ -110,7 +110,7 @@ else
   Chef::Log.info('Default method htauth configured in server.rb')
 end
 
-include_recipe 'nagios::server'
+include_recipe 'mu-nagios::server'
 
 ## Some post nagios install cleanup
 
