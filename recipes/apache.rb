@@ -18,11 +18,11 @@
 
 node.default['nagios']['server']['web_server'] = 'apache'
 
-include_recipe 'apache2'
-include_recipe 'apache2::mod_cgi'
-include_recipe 'apache2::mod_rewrite'
-include_recipe 'apache2::mod_php'
-include_recipe 'apache2::mod_ssl' if node['nagios']['enable_ssl']
+apache2_install 'default_install'
+apache2_module 'cgi'
+apache2_module 'rewrite'
+apache2_module 'php'
+apache2_module 'ssl' if node['nagios']['enable_ssl']
 
 apache_site '000-default' do
   enable false
@@ -56,11 +56,11 @@ node.default['nagios']['web_group'] = node['apache']['group'] || node['apache'][
 # configure the appropriate authentication method for the web server
 case node['nagios']['server_auth_method']
 when 'openid'
-  include_recipe 'apache2::mod_auth_openid'
+  apache2_module 'auth_openid'
 when 'cas'
-  include_recipe 'apache2::mod_auth_cas'
+  apache2_module 'auth_cas'
 when 'ldap'
-  include_recipe 'apache2::mod_authnz_ldap'
+  apache2_module 'authnz_ldap'
 when 'htauth'
   Chef::Log.info('Authentication method htauth configured in server.rb')
 else
