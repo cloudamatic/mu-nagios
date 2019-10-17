@@ -37,12 +37,12 @@ template "#{node['apache']['dir']}/sites-available/#{node['nagios']['server']['v
     ssl_cert_file: node['nagios']['ssl_cert_file'],
     ssl_cert_key: node['nagios']['ssl_cert_key']
   )
-  if File.symlink?("#{node['apache']['dir']}/sites-enabled/#{node['nagios']['server']['vname']}.conf")
+  if File.symlink?("#{apache2_apache_dir}/sites-enabled/#{node['nagios']['server']['vname']}.conf")
     notifies :restart, 'service[apache2]'
   end
 end
 
-file "#{node['apache']['dir']}/conf.d/#{node['nagios']['server']['vname']}.conf" do
+file "#{apache2_apache_dir}/conf.d/#{node['nagios']['server']['vname']}.conf" do
   action :delete
 end
 
