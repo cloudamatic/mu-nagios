@@ -24,8 +24,8 @@ apache2_module 'rewrite'
 apache2_module 'php'
 apache2_module 'ssl' if node['nagios']['enable_ssl']
 
-apache_site '000-default' do
-  enable false
+apache2_default_site '000-default' do
+  action :disable
 end
 
 template "#{node['apache']['dir']}/sites-available/#{node['nagios']['server']['vname']}.conf" do
@@ -46,7 +46,7 @@ file "#{node['apache']['dir']}/conf.d/#{node['nagios']['server']['vname']}.conf"
   action :delete
 end
 
-apache_site node['nagios']['server']['vname'] do
+apache2_site node['nagios']['server']['vname'] do
   notifies :restart, 'service[apache2]'
 end
 
