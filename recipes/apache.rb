@@ -60,7 +60,14 @@ when 'openid'
 when 'cas'
   include_recipe 'apache2::mod_auth_cas'
 when 'ldap'
-  include_recipe 'apache2::mod_authnz_ldap'
+  if node['platform_family'] == "rhel" and node['platform_version'].split('.')[0].to_i == 6
+    package "httpd24-mod_ldap" # XXX this assumption is specific to cloudamatic/mu, do not merge upstream
+    apache_module 'ldap' do
+      conf true
+    end
+  else
+    include_recipe "apache2::mod_authnz_ldap"
+  end
 when 'htauth'
   Chef::Log.info('Authentication method htauth configured in server.rb')
 else
